@@ -16,6 +16,7 @@ class _CurrencyAPI:
 
         table = "a"
         res_format = "json"
+        last_days = 30
         base_url = "https://api.nbp.pl/api/exchangerates/rates"
 
         url = f"{base_url}/{table}/{currency}/last/{last_days}/?format={res_format}"
@@ -112,10 +113,8 @@ class _CurrencyFileManager:
             raise
 
     @staticmethod
-    def update_data():
-        currency_api = ["chf", "usd", "eur"]
-        map(_CurrencyAPI.get_exchange_rate_data, currency_api)
-        pass
+    def check_data_folder():
+        Path(data_folder).mkdir(parents=True, exist_ok=True)
 
 
 class _CurrencyFormatter:
@@ -175,6 +174,8 @@ class Currency:
         self.decimal = decimal
         self.all_file_name = all_file_name
         self.selected_file_name = selected_file_name
+
+        _CurrencyFileManager.check_data_folder()
 
     def _set_currency(self, currency=None):
         json_responses = map(_CurrencyAPI.get_exchange_rate_data, self._CURRENCY_API_VALUES)

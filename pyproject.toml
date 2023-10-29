@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "exchange-rate"
+version = "0.1.0"
+description = ""
+authors = ["scrabwind <scrabwind@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "exchange_rate" }]
+
+[tool.poetry.dependencies]
+python = "3.11.6"
+requests = "2.31.0"
+numpy = "1.26.1"
+pandas = "2.1.2"
+jupyter = "^1.0.0"
+inquirerpy = "^0.3.4"
+yaspin = "^3.0.1"
+matplotlib = "^3.8.0"
+
+[tool.poetry.scripts]
+start = "main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
